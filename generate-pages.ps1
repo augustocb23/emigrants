@@ -24,6 +24,7 @@ function CopyStaticFiles {
 function New-XmlPage([string] $Id, [string] $Title) {
     $doc = New-Object System.Xml.XmlDocument
     $doc.InsertBefore($doc.CreateXmlDeclaration('1.0', 'UTF-8', $null), $doc.DocumentElement) | Out-Null
+    $doc.AppendChild($doc.CreateProcessingInstruction('xml-model', 'href="page.xsd"')) | Out-Null
     $doc.AppendChild($doc.CreateProcessingInstruction('xml-stylesheet', 'type="text/xsl" href="page.xsl"')) | Out-Null
 
     $pageNode = $doc.CreateElement('page')
@@ -58,4 +59,4 @@ function GenerateEmigrantsList {
 CopyStaticFiles
 GenerateEmigrantsList
 
-#Start-Process "$htmlOut/index.html"
+Start-Process "$htmlOut/index.html"

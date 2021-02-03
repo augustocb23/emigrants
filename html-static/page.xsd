@@ -1,12 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2021 (x64) (http://www.altova.com) by Augusto César Bisognin (Universidade Federal de Santa Maria) -->
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
-    <xs:element name="page">
-        <xs:complexType>
-            <xs:sequence>
-                <xs:element name="content" type="xs:string" />
-            </xs:sequence>
-            <xs:attribute name="id" use="optional" />
-            <xs:attribute name="title" use="required" />
-        </xs:complexType>
-    </xs:element>
+	<xs:element name="page">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="content">
+					<xs:attribute name="id" use="required"/>
+					<xs:attribute name="title" use="required"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="link">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="href" use="required"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="content">
+		<xs:all>
+			<xs:element name="plaintext" type="xs:string" minOccurs="0"/>
+			<xs:element name="caption" type="xs:string" minOccurs="0"/>
+			<xs:element name="link" type="link" minOccurs="0"/>
+			<xs:element name="list" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence maxOccurs="unbounded">
+						<xs:element name="item" type="content" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:all>
+	</xs:complexType>
 </xs:schema>
