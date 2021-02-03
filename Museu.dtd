@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Tabelas -->
+<!ELEMENT Museu (Acompanhante+, anexo+, Chamante+, Contratante+, DeslAnterior+, Filiacao+, IdentificacaoEmigrante+, Intermediario+, Localidade+, Lugar+, Nota+, PessoasFamFicamPais+, Processo+, ProcessoAcomp+, ProcessoAnexo+, ProcessoPessoasFam+)>
+<!ELEMENT Acompanhante (idAcomp, nome, idAcompAux, dtNasc, parentesco, habilitacoes)>
+<!ELEMENT anexo (idAnexo, descricao)>
+<!ELEMENT Chamante (idChamante, nome, residencia, tempoEstrang, passap)>
+<!ELEMENT Contratante (idContratante, nome, residencia, conhecimento)>
+<!ELEMENT DeslAnterior (idDeslAnterior, viajaPrimVez, dtRegresso, passapAnt, entEmissora, repatriado, motivo, pedidoAnt, numCM)>
+<!ELEMENT Filiacao (idFiliacao, idPai, idMae, nomePai, nomeMae)>
+<!ELEMENT IdentificacaoEmigrante (idEmigrante, nome, dtNasc, idConj, nomeConj, idFiliacao, idNaturalidade)>
+<!ELEMENT Intermediario (idIntermediario, nome, residencia, atividade, nomePai, nomeMae, parentesco, passap, pagamento)>
+<!ELEMENT Localidade (idLocalidade, freguesia, concelho, distrito)>
+<!ELEMENT Lugar (idLugar, lugar, idLocalidade)>
+<!ELEMENT Nota (idNota, descricao, numCM)>
+<!ELEMENT PessoasFamFicamPais (idPessoasFamFicamPais, nome, idDependente, idade, parentesco, aCargoEmigrante, idResidencia)>
+<!ELEMENT Processo (numCM, numCMu, numJE, ano, idade, estCivil, paisDestino, localidadeDestino, dtExp, oficioExp, passapExp, tipoTranspEmb, desigTranspEmb, ciaEmb, dtEmb, passPagaEmb, localEmb, portoDesemb, irComEmb, profissaoHab, habLiterariasHab, localTrabHab, remCondEco, numDiasTrabCondEco, motivoEmigCondEco, despDeslCondEco, julgadoAntPen, procPendAntPen, procPendFamAntPen, nomeAuxPaisDestino, parentescoAuxPaisDestino, residenciaAuxPaisDestino, profissaoAuxPaisDestino, auxPrestadosAuxPaisDestino, obtenContratoTrab, profissaoContratoTrab, salarioContratoTrab, jaTrabalhouMulherMenor, familiaresMulherMenor, qtTempoMulherMenor, ocupacaoMulherMenor, temConhecimentoDeclMulher, consideraDeclMulher, parentescoComChamante, idEmigrante, idChamante, idResidencia, idLugar, idIntermediario, idContratante)>
+<!ELEMENT ProcessoAcomp (numCM, idAcomp, idProcessoAcomp)>
+<!ELEMENT ProcessoAnexo (idAnexo, numCM, idProcessoAnexo)>
+<!ELEMENT ProcessoPessoasFam (idPessoasFamFicamPais, numCM, idProcessoPessoasFam)>
+<!-- Campos -->
+<!ELEMENT ano (#PCDATA)>
+<!ELEMENT nome (#PCDATA)>
+<!ELEMENT dtEmb (#PCDATA)>
+<!ELEMENT dtExp (#PCDATA)>
+<!ELEMENT idMae (#PCDATA)>
+<!ELEMENT idPai (#PCDATA)>
+<!ELEMENT idade (#PCDATA)>
+<!ELEMENT lugar (#PCDATA)>
+<!ELEMENT numCM (#PCDATA)>
+<!ELEMENT numJE (#PCDATA)>
+<!ELEMENT ciaEmb (#PCDATA)>
+<!ELEMENT dtNasc (#PCDATA)>
+<!ELEMENT idConj (#PCDATA)>
+<!ELEMENT idNota (#PCDATA)>
+<!ELEMENT motivo (#PCDATA)>
+<!ELEMENT numCMu (#PCDATA)>
+<!ELEMENT passap (#PCDATA)>
+<!ELEMENT idAcomp (#PCDATA)>
+<!ELEMENT idAnexo (#PCDATA)>
+<!ELEMENT idLugar (#PCDATA)>
+<!ELEMENT nomeMae (#PCDATA)>
+<!ELEMENT nomePai (#PCDATA)>
+<!ELEMENT concelho (#PCDATA)>
+<!ELEMENT distrito (#PCDATA)>
+<!ELEMENT estCivil (#PCDATA)>
+<!ELEMENT irComEmb (#PCDATA)>
+<!ELEMENT localEmb (#PCDATA)>
+<!ELEMENT nomeConj (#PCDATA)>
+<!ELEMENT atividade (#PCDATA)>
+<!ELEMENT descricao (#PCDATA)>
+<!ELEMENT freguesia (#PCDATA)>
+<!ELEMENT oficioExp (#PCDATA)>
+<!ELEMENT pagamento (#PCDATA)>
+<!ELEMENT passapAnt (#PCDATA)>
+<!ELEMENT passapExp (#PCDATA)>
+<!ELEMENT pedidoAnt (#PCDATA)>
+<!ELEMENT dtRegresso (#PCDATA)>
+<!ELEMENT idAcompAux (#PCDATA)>
+<!ELEMENT idChamante (#PCDATA)>
+<!ELEMENT idFiliacao (#PCDATA)>
+<!ELEMENT parentesco (#PCDATA)>
+<!ELEMENT remCondEco (#PCDATA)>
+<!ELEMENT repatriado (#PCDATA)>
+<!ELEMENT residencia (#PCDATA)>
+<!ELEMENT entEmissora (#PCDATA)>
+<!ELEMENT idEmigrante (#PCDATA)>
+<!ELEMENT paisDestino (#PCDATA)>
+<!ELEMENT passPagaEmb (#PCDATA)>
+<!ELEMENT portoDesemb (#PCDATA)>
+<!ELEMENT conhecimento (#PCDATA)>
+<!ELEMENT habilitacoes (#PCDATA)>
+<!ELEMENT idDependente (#PCDATA)>
+<!ELEMENT idLocalidade (#PCDATA)>
+<!ELEMENT idResidencia (#PCDATA)>
+<!ELEMENT localTrabHab (#PCDATA)>
+<!ELEMENT profissaoHab (#PCDATA)>
+<!ELEMENT tempoEstrang (#PCDATA)>
+<!ELEMENT viajaPrimVez (#PCDATA)>
+<!ELEMENT idContratante (#PCDATA)>
+<!ELEMENT julgadoAntPen (#PCDATA)>
+<!ELEMENT tipoTranspEmb (#PCDATA)>
+<!ELEMENT desigTranspEmb (#PCDATA)>
+<!ELEMENT idDeslAnterior (#PCDATA)>
+<!ELEMENT idNaturalidade (#PCDATA)>
+<!ELEMENT procPendAntPen (#PCDATA)>
+<!ELEMENT aCargoEmigrante (#PCDATA)>
+<!ELEMENT despDeslCondEco (#PCDATA)>
+<!ELEMENT idIntermediario (#PCDATA)>
+<!ELEMENT idProcessoAcomp (#PCDATA)>
+<!ELEMENT idProcessoAnexo (#PCDATA)>
+<!ELEMENT habLiterariasHab (#PCDATA)>
+<!ELEMENT localidadeDestino (#PCDATA)>
+<!ELEMENT motivoEmigCondEco (#PCDATA)>
+<!ELEMENT obtenContratoTrab (#PCDATA)>
+<!ELEMENT procPendFamAntPen (#PCDATA)>
+<!ELEMENT nomeAuxPaisDestino (#PCDATA)>
+<!ELEMENT numDiasTrabCondEco (#PCDATA)>
+<!ELEMENT qtTempoMulherMenor (#PCDATA)>
+<!ELEMENT consideraDeclMulher (#PCDATA)>
+<!ELEMENT ocupacaoMulherMenor (#PCDATA)>
+<!ELEMENT salarioContratoTrab (#PCDATA)>
+<!ELEMENT idProcessoPessoasFam (#PCDATA)>
+<!ELEMENT familiaresMulherMenor (#PCDATA)>
+<!ELEMENT idPessoasFamFicamPais (#PCDATA)>
+<!ELEMENT parentescoComChamante (#PCDATA)>
+<!ELEMENT profissaoContratoTrab (#PCDATA)>
+<!ELEMENT jaTrabalhouMulherMenor (#PCDATA)>
+<!ELEMENT profissaoAuxPaisDestino (#PCDATA)>
+<!ELEMENT parentescoAuxPaisDestino (#PCDATA)>
+<!ELEMENT residenciaAuxPaisDestino (#PCDATA)>
+<!ELEMENT temConhecimentoDeclMulher (#PCDATA)>
+<!ELEMENT auxPrestadosAuxPaisDestino (#PCDATA)>
