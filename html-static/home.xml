@@ -2,7 +2,5 @@
 <?xml-stylesheet type="text/xsl" href="page.xsl"?>
 <?xml-model href="page.xsd"?>
 <page id="home" title="Sobre">
-	<content>
-		<plaintext>O Museu das Migrações e das Comunidades, percursor no seu género em Portugal, funda a sua existência no estudo, preservação e comunicação das expressões materiais e simbólicas do universo migratório e, em especial, do ciclo do retorno dos emigrantes portugueses. Inscreve as suas finalidades na perspetiva do conhecimento dos movimentos migratórios e, em especial, da emigração portuguesa, detendo-se particularmente na emigração para o Brasil do século XIX e primeiras décadas do XX e na emigração para os países europeus da segunda metade do século XX. Assenta na descoberta dos seus efeitos, decorrentes do cruzamento de povos e culturas, na história económica, social e cultural e naquilo que concorre para a sua compreensão histórica e social.</plaintext>
-	</content>
+	<plaintext>O Museu das Migrações e das Comunidades, percursor no seu género em Portugal, funda a sua existência no estudo, preservação e comunicação das expressões materiais e simbólicas do universo migratório e, em especial, do ciclo do retorno dos emigrantes portugueses. Inscreve as suas finalidades na perspetiva do conhecimento dos movimentos migratórios e, em especial, da emigração portuguesa, detendo-se particularmente na emigração para o Brasil do século XIX e primeiras décadas do XX e na emigração para os países europeus da segunda metade do século XX. Assenta na descoberta dos seus efeitos, decorrentes do cruzamento de povos e culturas, na história económica, social e cultural e naquilo que concorre para a sua compreensão histórica e social.</plaintext>
 </page>

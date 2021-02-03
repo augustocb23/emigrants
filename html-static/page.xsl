@@ -18,7 +18,7 @@
 					<h1>
 						<xsl:value-of select="@title"/>
 					</h1>
-					<xsl:for-each select="content/*">
+					<xsl:for-each select="*">
 						<xsl:if test="name(.) = 'plaintext'">
 							<p>
 								<xsl:value-of select="text()"/>
