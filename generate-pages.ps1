@@ -38,11 +38,18 @@ function GenerateEmigrantsList {
     $emigrants = Select-Xml -Path $dataFile -XPath 'Museu/IdentificacaoEmigrante'
     $doc = New-XmlPage -Id 'emigrants' -Title 'Emigrantes'
 
+    $list = $doc.CreateElement('list')
+    $doc.DocumentElement.AppendChild($list) | Out-Null
+
     foreach ($emigrant in $emigrants) {
-        $node = $doc.CreateElement('plaintext')
+        $node = $doc.CreateElement('link')
+        $emigrantId = Select-Xml -Xml $emigrant.Node -XPath 'idEmigrante/text()'
+        $node.setAttribute('href', "emigrante_$emigrantId.xml")
         $node.InnerText = Select-Xml -Xml $emigrant.Node -XPath 'nome/text()'
 
-        $doc.DocumentElement.AppendChild($node) | Out-Null
+        $listItem = $doc.CreateElement('item')
+        $listItem.AppendChild($node) | Out-Null
+        $list.AppendChild($listItem) | Out-Null
     }
 
     $doc.Save("$htmlOut/emigrants.xml")
@@ -51,6 +58,4 @@ function GenerateEmigrantsList {
 CopyStaticFiles
 GenerateEmigrantsList
 
-# TODO remover pausa
-#Pause
-Start-Process "$htmlOut/index.html"
+#Start-Process "$htmlOut/index.html"

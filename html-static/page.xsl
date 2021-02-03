@@ -18,18 +18,7 @@
 					<h1>
 						<xsl:value-of select="@title"/>
 					</h1>
-					<xsl:for-each select="*">
-						<xsl:if test="name(.) = 'plaintext'">
-							<p>
-								<xsl:value-of select="text()"/>
-							</p>
-						</xsl:if>
-						<xsl:if test="name(.) = 'caption'">
-							<h2>
-								<xsl:value-of select="text()"/>
-							</h2>
-						</xsl:if>
-					</xsl:for-each>
+					<xsl:apply-templates />
 					<xsl:if test="@id='home'">
 						<h1>Menu</h1>
 						<xsl:call-template name="links"/>
@@ -52,6 +41,32 @@
 			<li>
 				<a href="processes.xml">Processos</a>
 			</li>
+		</ul>
+	</xsl:template>
+	<!-- matches -->
+	<xsl:template match="plaintext">
+		<p>
+			<xsl:value-of select="text()"/>
+		</p>
+	</xsl:template>
+	<xsl:template match="link">
+		<a href="{@href}">
+			<xsl:value-of select="text()"/>
+		</a>
+	</xsl:template>
+	<xsl:template match="caption">
+		<h2>
+			<xsl:value-of select="text()"/>
+		</h2>
+	</xsl:template>
+	<xsl:template match="list">
+		<ul>
+			<xsl:for-each select="item">
+				<xsl:sort select="*/text()"/>
+				<li>
+					<xsl:apply-templates/>
+				</li>
+			</xsl:for-each>
 		</ul>
 	</xsl:template>
 </xsl:stylesheet>
