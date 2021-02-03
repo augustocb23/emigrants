@@ -55,8 +55,30 @@ function GenerateEmigrantsList {
 
     $doc.Save("$htmlOut/emigrants.xml")
 }
+function GeneratPlacesList {
+    $places = Select-Xml -Path $dataFile -XPath 'Museu/Localidade'
+    $doc = New-XmlPage -Id 'places' -Title 'Localidades'
+
+    $list = $doc.CreateElement('list')
+    $doc.DocumentElement.AppendChild($list) | Out-Null
+
+    foreach ($emigrant in $places) {
+        $node = $doc.CreateElement('plaintext')
+        $freguesia = Select-Xml -Xml $emigrant.Node -XPath 'freguesia/text()'
+        $concelho = Select-Xml -Xml $emigrant.Node -XPath 'concelho/text()'
+        $distrito = Select-Xml -Xml $emigrant.Node -XPath 'distrito/text()'
+        $node.InnerText = "$freguesia - $concelho (Distrito de $distrito)"
+
+        $listItem = $doc.CreateElement('item')
+        $listItem.AppendChild($node) | Out-Null
+        $list.AppendChild($listItem) | Out-Null
+    }
+
+    $doc.Save("$htmlOut/places.xml")
+}
 
 CopyStaticFiles
 GenerateEmigrantsList
+GeneratPlacesList
 
 Start-Process "$htmlOut/index.html"
