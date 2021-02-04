@@ -37,9 +37,6 @@
 			<li>
 				<a href="places.xml">Localidades</a>
 			</li>
-			<li>
-				<a href="processes.xml">Processos</a>
-			</li>
 		</ul>
 	</xsl:template>
 	<!-- matches -->
