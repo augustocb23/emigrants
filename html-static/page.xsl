@@ -17,10 +17,15 @@
 					<h1>
 						<xsl:value-of select="@title"/>
 					</h1>
-					<xsl:apply-templates />
+					<xsl:apply-templates/>
 					<xsl:if test="@id='home'">
 						<h1>Menu</h1>
 						<xsl:call-template name="links"/>
+					</xsl:if>
+					<xsl:if test="@backTo">
+						<p>
+							<a href="{@backTo}">Voltar</a>
+						</p>
 					</xsl:if>
 				</div>
 			</section>
@@ -67,5 +72,12 @@
 				</li>
 			</xsl:for-each>
 		</ul>
+		<xsl:if test="@size">
+			<blockquote>
+				<p>
+					<xsl:value-of select="concat(@size,' itens')"/>
+				</p>
+			</blockquote>
+		</xsl:if>
 	</xsl:template>
 </xsl:stylesheet>

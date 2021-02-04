@@ -5,8 +5,9 @@
 		<xs:complexType>
 			<xs:complexContent>
 				<xs:extension base="content">
-					<xs:attribute name="id" use="required"/>
-					<xs:attribute name="title" use="required"/>
+					<xs:attribute name="backTo" type="xs:string"/>
+					<xs:attribute name="id" type="xs:ID" use="required"/>
+					<xs:attribute name="title" type="xs:string" use="required"/>
 				</xs:extension>
 			</xs:complexContent>
 		</xs:complexType>
@@ -29,6 +30,7 @@
 					<xs:sequence maxOccurs="unbounded">
 						<xs:element name="item" type="content" maxOccurs="unbounded"/>
 					</xs:sequence>
+					<xs:attribute name="size" type="xs:int"/>
 				</xs:complexType>
 			</xs:element>
 		</xs:all>
