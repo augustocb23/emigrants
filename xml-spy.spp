@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Project>
+	<Folder FolderName="XML Files" ExtStr="xml;cml;math;rdf;smil;svg;wml">
+		<File FilePath="html-static\home.xml" HomeFolder="Yes"/>
+		<File FilePath="museu.xml" HomeFolder="Yes"/>
+		<File FilePath="MuseuEmigracaoBD.xml" HomeFolder="Yes"/>
+	</Folder>
+	<Folder FolderName="XSL Files" ExtStr="xsl;xslt">
+		<File FilePath="Museu.xsl" HomeFolder="Yes"/>
+		<File FilePath="html-static\page.xsl" HomeFolder="Yes"/>
+	</Folder>
+	<Folder FolderName="XQuery Files" ExtStr="xq;xql;xquery;xqu"/>
+	<Folder FolderName="HTML Files" ExtStr="html;htm;xhtml;asp">
+		<File FilePath="html-static\index.html" HomeFolder="Yes"/>
+	</Folder>
+	<Folder FolderName="DTD/Schemas" ExtStr="dtd;dcd;xdr;biz;xsd">
+		<File FilePath="Museu.dtd" HomeFolder="Yes"/>
+		<File FilePath="Museu.xsd" HomeFolder="Yes"/>
+		<File FilePath="html-static\page.xsd" HomeFolder="Yes"/>
+	</Folder>
+	<Folder FolderName="Entities" ExtStr="ent"/>
+	<File FilePath="html-static\styles.css" HomeFolder="Yes"/>
+</Project>
