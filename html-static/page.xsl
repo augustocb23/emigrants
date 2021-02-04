@@ -14,14 +14,14 @@
 			</header>
 			<section>
 				<div id="container" class="markdown-body">
-					<h1>
-						<xsl:value-of select="@title"/>
-					</h1>
-					<xsl:apply-templates/>
 					<xsl:if test="@id='home'">
 						<h1>Menu</h1>
 						<xsl:call-template name="links"/>
 					</xsl:if>
+					<h1>
+						<xsl:value-of select="@title"/>
+					</h1>
+					<xsl:apply-templates/>
 					<xsl:if test="@backTo">
 						<p>
 							<a href="{@backTo}">Voltar</a>
@@ -69,6 +69,13 @@
 				<xsl:value-of select="@title"/>
 			</h2>
 		</xsl:if>
+		<xsl:if test="@size">
+			<blockquote>
+				<p>
+					<xsl:value-of select="concat(@size,' itens')"/>
+				</p>
+			</blockquote>
+		</xsl:if>
 		<ul>
 			<xsl:for-each select="item">
 				<xsl:sort select="*/text()"/>
@@ -77,10 +84,12 @@
 				</li>
 			</xsl:for-each>
 		</ul>
-		<xsl:if test="@size">
+	</xsl:template><xsl:template match="image">
+		<img src="{@href}" title="@description"/>
+		<xsl:if test="@description">
 			<blockquote>
 				<p>
-					<xsl:value-of select="concat(@size,' itens')"/>
+					<xsl:value-of select="@description"/>
 				</p>
 			</blockquote>
 		</xsl:if>

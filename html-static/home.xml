@@ -2,5 +2,10 @@
 <?xml-stylesheet type="text/xsl" href="page.xsl"?>
 <?xml-model href="page.xsd"?>
 <page id="home" title="Sobre">
-	<longtext>O Museu das Migrações e das Comunidades, percursor no seu género em Portugal, funda a sua existência no estudo, preservação e comunicação das expressões materiais e simbólicas do universo migratório e, em especial, do ciclo do retorno dos emigrantes portugueses. Inscreve as suas finalidades na perspetiva do conhecimento dos movimentos migratórios e, em especial, da emigração portuguesa, detendo-se particularmente na emigração para o Brasil do século XIX e primeiras décadas do XX e na emigração para os países europeus da segunda metade do século XX. Assenta na descoberta dos seus efeitos, decorrentes do cruzamento de povos e culturas, na história económica, social e cultural e naquilo que concorre para a sua compreensão histórica e social.</longtext>
+	<longtext>O Museu das Migrações e das Comunidades foi criado em 12 de julho de 2001 por deliberação da Câmara Municipal de Fafe, como plataforma virtual, com a designação de Museu da Emigração e das Comunidades.</longtext>
+	<image href="img3.jpg" description="A vinda de portugueses ao Brasil"/>
+	<longtext>A partir de setembro de 2009, o museu encontra-se instalado no R/C da Casa Municipal da Cultura. O Museu das Migrações e das Comunidades, percursor no seu género em Portugal, funda a sua existência no estudo, preservação e comunicação das expressões materiais e simbólicas do universo migratório e, em especial, do ciclo do retorno dos emigrantes portugueses. Inscreve as suas finalidades na perspetiva do conhecimento dos movimentos migratórios e, em especial, da emigração portuguesa, detendo-se particularmente na emigração para o Brasil do século XIX e primeiras décadas do XX e na emigração para os países europeus da segunda metade do século XX. Assenta na descoberta dos seus efeitos, decorrentes do cruzamento de povos e culturas, na história económica, social e cultural e naquilo que concorre para a sua compreensão histórica e social.</longtext>
+	<image href="img1.jpg"/>
+	<image href="img2.jpg" description="História das comunidades portuguesas"/>
+	<link href="https://www.cm-fafe.pt/conteudo?item=31299">Página do museu no site da Câmara Municipal de Fafe</link>
 </page>

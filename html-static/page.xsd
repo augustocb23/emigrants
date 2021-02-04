@@ -34,6 +34,7 @@
 					<xs:attribute name="size" type="xs:int"/>
 				</xs:complexType>
 			</xs:element>
+			<xs:element name="image" type="image"/>
 		</xs:choice>
 	</xs:complexType>
 	<xs:simpleType name="longtext">
@@ -45,4 +46,8 @@
 	<xs:simpleType name="caption">
 		<xs:restriction base="xs:string"/>
 	</xs:simpleType>
+	<xs:complexType name="image">
+		<xs:attribute name="href" type="xs:string" use="required"/>
+		<xs:attribute name="description" type="xs:string" use="optional"/>
+	</xs:complexType>
 </xs:schema>

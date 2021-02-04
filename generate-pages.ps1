@@ -199,10 +199,11 @@ function Build-ProcessPage ([string] $ProcessId, [string] $EmigrantId, [string] 
     $reasonInfo.InnerText = "Motivação: $reason"
     $pageElement.AppendChild($reasonInfo) | Out-Null
     
+    $companionIds = Select-Xml -Xml $xmlData -XPath "ProcessoAcomp[numCM/text()='$ProcessId']/idAcomp/text()"
     $companionsList = $doc.CreateElement('list')
     $companionsList.SetAttribute('title', 'Acompanhantes')
+    $companionsList.SetAttribute('size', $companionIds.Length)
     $pageElement.AppendChild($companionsList) | Out-Null
-    $companionIds = Select-Xml -Xml $xmlData -XPath "ProcessoAcomp[numCM/text()='$ProcessId']/idAcomp/text()"
     foreach ($companionId in $companionIds) {
         $companion = (Select-Xml -Xml $xmlData -XPath "Acompanhante[idAcomp=$companionId]").Node
         $companionName = Select-Xml -Xml $companion -XPath 'nome/text()'
@@ -216,10 +217,11 @@ function Build-ProcessPage ([string] $ProcessId, [string] $EmigrantId, [string] 
         $companionsList.AppendChild($listItem) | Out-Null
     }
 
+    $relativeIds = Select-Xml -Xml $xmlData -XPath "ProcessoPessoasFam[numCM/text()='$ProcessId']/idPessoasFamFicamPais/text()"
     $relativesList = $doc.CreateElement('list')
     $relativesList.SetAttribute('title', 'Familiares que ficaram')
+    $relativesList.SetAttribute('size', $relativeIds.Length)
     $pageElement.AppendChild($relativesList) | Out-Null
-    $relativeIds = Select-Xml -Xml $xmlData -XPath "ProcessoPessoasFam[numCM/text()='$ProcessId']/idPessoasFamFicamPais/text()"
     foreach ($relativeId in $relativeIds) {
         $relative = (Select-Xml -Xml $xmlData -XPath "PessoasFamFicamPais[idPessoasFamFicamPais=$relativeId]").Node
         $relativeName = Select-Xml -Xml $relative -XPath 'nome/text()'
@@ -233,10 +235,11 @@ function Build-ProcessPage ([string] $ProcessId, [string] $EmigrantId, [string] 
         $relativesList.AppendChild($listItem) | Out-Null
     }
 
+    $attachmentIds = Select-Xml -Xml $xmlData -XPath "ProcessoAnexo[numCM/text()='$ProcessId']/idAnexo/text()"
     $attachmentsList = $doc.CreateElement('list')
     $attachmentsList.SetAttribute('title', 'Anexos')
+    $attachmentsList.SetAttribute('size', $attachmentIds.Length)
     $pageElement.AppendChild($attachmentsList) | Out-Null
-    $attachmentIds = Select-Xml -Xml $xmlData -XPath "ProcessoAnexo[numCM/text()='$ProcessId']/idAnexo/text()"
     foreach ($attachmentId in $attachmentIds) {
         $attachment = (Select-Xml -Xml $xmlData -XPath "anexo[idAnexo=$attachmentId]").Node
 
