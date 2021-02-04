@@ -64,6 +64,11 @@
 		</h2>
 	</xsl:template>
 	<xsl:template match="list">
+		<xsl:if test="@title">
+			<h2>
+				<xsl:value-of select="@title"/>
+			</h2>
+		</xsl:if>
 		<ul>
 			<xsl:for-each select="item">
 				<xsl:sort select="*/text()"/>

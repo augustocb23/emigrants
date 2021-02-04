@@ -20,19 +20,29 @@
 		</xs:simpleContent>
 	</xs:complexType>
 	<xs:complexType name="content">
-		<xs:all>
-			<xs:element name="longtext" type="xs:string" minOccurs="0"/>
-			<xs:element name="plaintext" type="xs:string" minOccurs="0"/>
-			<xs:element name="caption" type="xs:string" minOccurs="0"/>
-			<xs:element name="link" type="link" minOccurs="0"/>
-			<xs:element name="list" minOccurs="0">
+		<xs:choice maxOccurs="unbounded">
+			<xs:element name="longtext" type="longtext"/>
+			<xs:element name="plaintext" type="plaintext"/>
+			<xs:element name="caption" type="caption"/>
+			<xs:element name="link" type="link"/>
+			<xs:element name="list">
 				<xs:complexType>
-					<xs:sequence maxOccurs="unbounded">
-						<xs:element name="item" type="content" maxOccurs="unbounded"/>
-					</xs:sequence>
+					<xs:choice maxOccurs="unbounded">
+						<xs:element name="item" type="content" minOccurs="0"/>
+					</xs:choice>
+					<xs:attribute name="title"/>
 					<xs:attribute name="size" type="xs:int"/>
 				</xs:complexType>
 			</xs:element>
-		</xs:all>
+		</xs:choice>
 	</xs:complexType>
+	<xs:simpleType name="longtext">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="plaintext">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="caption">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
 </xs:schema>

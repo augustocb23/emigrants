@@ -151,13 +151,10 @@ function Build-EmigrantPage ([System.Xml.XmlNode] $Emigrant) {
     }
 
     # processes
-    $processesTitle = $doc.CreateElement('caption')
-    $processesTitle.InnerText = 'Processos'
-    $pageElement.AppendChild($processesTitle) | Out-Null
-
     $processIds = Select-Xml -Xml $xmlData -XPath "Processo[idEmigrante/text() = '$emigrantId']/numCM/text()"
     if ($processIds) {
         $processList = $doc.CreateElement('list')
+        $processList.SetAttribute('title', 'Processos')
         $pageElement.AppendChild($processList) | Out-Null
 
         foreach ($processId in $processIds) {
@@ -202,10 +199,8 @@ function Build-ProcessPage ([string] $ProcessId, [string] $EmigrantId, [string] 
     $reasonInfo.InnerText = "Motivação: $reason"
     $pageElement.AppendChild($reasonInfo) | Out-Null
     
-    $companionsTitle = $doc.CreateElement('caption')
-    $companionsTitle.InnerText = "Acompanhantes"
-    $pageElement.AppendChild($companionsTitle) | Out-Null
     $companionsList = $doc.CreateElement('list')
+    $companionsList.SetAttribute('title', 'Acompanhantes')
     $pageElement.AppendChild($companionsList) | Out-Null
     $companionIds = Select-Xml -Xml $xmlData -XPath "ProcessoAcomp[numCM/text()='$ProcessId']/idAcomp/text()"
     foreach ($companionId in $companionIds) {
@@ -221,10 +216,8 @@ function Build-ProcessPage ([string] $ProcessId, [string] $EmigrantId, [string] 
         $companionsList.AppendChild($listItem) | Out-Null
     }
 
-    $relativesTitle = $doc.CreateElement('caption')
-    $relativesTitle.InnerText = "Familiares que ficaram"
-    $pageElement.AppendChild($relativesTitle) | Out-Null
     $relativesList = $doc.CreateElement('list')
+    $relativesList.SetAttribute('title', 'Familiares que ficaram')
     $pageElement.AppendChild($relativesList) | Out-Null
     $relativeIds = Select-Xml -Xml $xmlData -XPath "ProcessoPessoasFam[numCM/text()='$ProcessId']/idPessoasFamFicamPais/text()"
     foreach ($relativeId in $relativeIds) {
@@ -240,10 +233,8 @@ function Build-ProcessPage ([string] $ProcessId, [string] $EmigrantId, [string] 
         $relativesList.AppendChild($listItem) | Out-Null
     }
 
-    $attachmentsTitle = $doc.CreateElement('caption')
-    $attachmentsTitle.InnerText = "Anexos"
-    $pageElement.AppendChild($attachmentsTitle) | Out-Null
     $attachmentsList = $doc.CreateElement('list')
+    $attachmentsList.SetAttribute('title', 'Anexos')
     $pageElement.AppendChild($attachmentsList) | Out-Null
     $attachmentIds = Select-Xml -Xml $xmlData -XPath "ProcessoAnexo[numCM/text()='$ProcessId']/idAnexo/text()"
     foreach ($attachmentId in $attachmentIds) {
