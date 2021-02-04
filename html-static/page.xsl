@@ -40,10 +40,13 @@
 		</ul>
 	</xsl:template>
 	<!-- matches -->
-	<xsl:template match="plaintext">
+	<xsl:template match="longtext">
 		<p>
 			<xsl:value-of select="text()"/>
 		</p>
+	</xsl:template>
+	<xsl:template match="plaintext">
+		<xsl:value-of select="text()"/>
 	</xsl:template>
 	<xsl:template match="link">
 		<a href="{@href}">

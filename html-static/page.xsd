@@ -20,6 +20,7 @@
 	</xs:complexType>
 	<xs:complexType name="content">
 		<xs:all>
+			<xs:element name="longtext" type="xs:string" minOccurs="0"/>
 			<xs:element name="plaintext" type="xs:string" minOccurs="0"/>
 			<xs:element name="caption" type="xs:string" minOccurs="0"/>
 			<xs:element name="link" type="link" minOccurs="0"/>
