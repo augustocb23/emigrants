@@ -118,25 +118,20 @@ function Build-EmigrantPage ([System.Xml.XmlNode] $Emigrant) {
     $affiliationId = Select-Xml -Xml $Emigrant -XPath 'idFiliacao/text()'
     $affiliation = Select-Xml -Xml $xmlData -XPath "Filiacao[idFiliacao/text() = '$affiliationId']"
     if ($affiliation) {
-        $affiliationList = $doc.CreateElement('list')
-        $pageElement.AppendChild($affiliationList) | Out-Null
+        $fatherNode = $doc.CreateElement('longtext')
+        $fatherName = Select-Xml -Xml $affiliation.Node -XPath "nomePai/text()"
+        $fatherNode.InnerText = "Pai: $fatherName"
+        $pageElement.AppendChild($fatherNode) | Out-Null
 
-        $fatherName = $doc.CreateElement('plaintext')    
-        $fatherName.InnerText = Select-Xml -Xml $affiliation.Node -XPath "nomePai/text()"
-        $fatherItem = $doc.CreateElement('item')
-        $fatherItem.AppendChild($fatherName) | Out-Null
-        $affiliationList.AppendChild($fatherItem) | Out-Null
-
-        $motherName = $doc.CreateElement('plaintext') 
-        $motherName.InnerText = Select-Xml -Xml $affiliation.Node -XPath "nomeMae/text()"
-        $motherItem = $doc.CreateElement('item')
-        $motherItem.AppendChild($motherName) | Out-Null
-        $affiliationList.AppendChild($motherItem) | Out-Null
+        $motherNode = $doc.CreateElement('longtext')
+        $motherName = Select-Xml -Xml $affiliation.Node -XPath "nomeMae/text()"
+        $motherNode.InnerText = "Mãe: $motherName"
+        $pageElement.AppendChild($motherNode) | Out-Null
     } else {
         Write-Warning "Emigrant '$emigrantName' (ID $emigrantId) has no affiliation data"
     }
 
-    # places
+    # place
     $placeTitle = $doc.CreateElement('caption')
     $placeTitle.InnerText = 'Naturalidade'
     $pageElement.AppendChild($placeTitle) | Out-Null

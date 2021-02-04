@@ -1,6 +1,6 @@
-# Trabalho Final
+# Museu das Migrações
 
-Linguagens de Marcação Extensíveis
+Trabalho Final da disciplina de Linguagens de Marcação Extensíveis
 
 Para gerar uma versão em HTML, utilize o comando
 
