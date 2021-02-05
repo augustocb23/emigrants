@@ -1,3 +1,4 @@
+# file names
 $htmlStatic = 'html-static'
 $htmlOut = 'html-out'
 $dataFile = 'museu.xml'
@@ -10,9 +11,15 @@ if (!(Test-Path  $dataFile )) {
     Write-Error -Category ObjectNotFound -ErrorAction Stop -Message "File $dataFile not found."
 }
 
+# load XML
 $xmlData = (Select-Xml -Path $dataFile -XPath "Museu").Node
 
 function Copy-StaticFiles {
+    <#
+    .SYNOPSIS
+        Copy files from $htmlStatic to $htmlOut
+    #>
+
     if (Test-Path  $htmlOut) {
         Get-Item $htmlOut | Remove-Item -Recurse -Force
     }
@@ -24,6 +31,19 @@ function Copy-StaticFiles {
 }
 
 function New-XmlPage([string] $Id, [string] $Title, [string] $BackTo) {
+    <#
+    .SYNOPSIS
+        Creates a new System.Xml.XmlDocument following the page.xsd schemma.
+    .PARAMETER Id
+        The ID attribute value.
+    .PARAMETER Title
+        The title of the page.
+    .PARAMETER BackTo
+        File name to return to the previous page.
+    .OUTPUTS
+        System.Xml.XmlDocument
+    #>
+
     $doc = New-Object System.Xml.XmlDocument
     $doc.InsertBefore($doc.CreateXmlDeclaration('1.0', 'UTF-8', $null), $doc.DocumentElement) | Out-Null
     $doc.AppendChild($doc.CreateProcessingInstruction('xml-model', 'href="page.xsd"')) | Out-Null
@@ -39,6 +59,11 @@ function New-XmlPage([string] $Id, [string] $Title, [string] $BackTo) {
 }
 
 function Build-PlacesListPage {
+    <#
+    .SYNOPSIS
+        Creates a System.Xml.XmlDocument listing all found places and save it to 'places.xml'.
+    #>
+
     $places = Select-Xml -Xml $xmlData -XPath 'Localidade'
     $doc = New-XmlPage -Id 'places' -Title 'Localidades' -BackTo 'home.xml'
 
@@ -62,6 +87,12 @@ function Build-PlacesListPage {
 }
 
 function Build-EmigrantsListPage {
+    <#
+    .SYNOPSIS
+        Creates a System.Xml.XmlDocument listing all found emigrants and save it to 'emigrants.xml'.
+        It also calls Build-EmigrantPage for each found emigrant.
+    #>
+
     $emigrants = Select-Xml -Xml $xmlData -XPath 'IdentificacaoEmigrante'
     $doc = New-XmlPage -Id 'emigrants' -Title 'Emigrantes' -BackTo 'home.xml'
 
@@ -70,7 +101,6 @@ function Build-EmigrantsListPage {
     $doc.DocumentElement.AppendChild($list) | Out-Null
 
     $i = 0
-    $length = $emigrants.Length
     foreach ($emigrant in $emigrants) {
         $node = $doc.CreateElement('link')
         $emigrantId = Select-Xml -Xml $emigrant.Node -XPath 'idEmigrante/text()'
@@ -82,7 +112,7 @@ function Build-EmigrantsListPage {
         $listItem.AppendChild($node) | Out-Null
         $list.AppendChild($listItem) | Out-Null
 
-        Write-Progress -Activity 'Generating emigrant pages' -Status $emigrantName -PercentComplete ($i / $length * 100)
+        Write-Progress -Activity 'Generating emigrant pages' -Status $emigrantName -PercentComplete ($i / $emigrants.Length * 100)
         Build-EmigrantPage -EmigrantId $emigrantId -Emigrant $emigrant.Node
 
         $i++
@@ -92,6 +122,14 @@ function Build-EmigrantsListPage {
 }
 
 function Build-EmigrantPage ([System.Xml.XmlNode] $Emigrant) {
+    <#
+    .SYNOPSIS
+        Creates a System.Xml.XmlDocument for the giving emigrant node and save it to "emigrant_$EmigrantId.xml".
+        It also calls Build-ProcessPage for each found process.
+    .PARAMETER Emigrant
+        A System.Xml.XmlNode representing a Emigrant.
+    #>
+
     $emigrantId = Select-Xml -Xml $Emigrant -XPath 'idEmigrante/text()'
     $emigrantName = Select-Xml -Xml $Emigrant -XPath 'nome/text()'
     $doc = New-XmlPage -Id "emigrant_$emigrantId" -Title $emigrantName -BackTo 'emigrants.xml'
@@ -176,6 +214,17 @@ function Build-EmigrantPage ([System.Xml.XmlNode] $Emigrant) {
 }
 
 function Build-ProcessPage ([string] $ProcessId, [string] $EmigrantId, [string] $EmigrantName) {
+    <#
+    .SYNOPSIS
+        Creates a System.Xml.XmlDocument for the giving process ID and save it to "process_$ProcessId.xml".
+    .PARAMETER ProcessId
+        The process to create a page.
+    .PARAMETER EmigrantId
+        The emigrant ID to whom the process belongs to.
+    .PARAMETER EmigrantName
+        The name of the emigrant to whom the process belongs to.
+    #>
+
     $process = Select-Xml -Xml $xmlData -XPath "Processo[numCM/text()='$ProcessId']"
     if (!$process) {
         Write-Warning -Category ObjectNotFound -ErrorAction Continue -Message "Process $ProcessId not found"
@@ -258,4 +307,5 @@ Copy-StaticFiles
 Build-PlacesListPage
 Build-EmigrantsListPage
 
+# Opens the generated website in the default browser.
 Start-Process "$htmlOut/index.html"
