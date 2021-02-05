@@ -1,0 +1,59 @@
+<h1 id="museu-das-migracoes">Museu das Migrações</h1>
+<p>Trabalho Final da disciplina de Linguagens de Marcação Extensíveis</p>
+<p>Para gerar uma versão em HTML, utilize o comando</p>
+<pre><code class="language-powershell">(ConvertFrom-Markdown .\README.md).Html | Out-File .\README.html
+</code></pre>
+<h2 id="powershell">Powershell</h2>
+<p>O PowerShell é uma estrutura multiplataforma de gerenciamento de configuração e de automação de tarefas, que consiste em um shell de linha de comando e em uma linguagem de script. <a href="https://docs.microsoft.com/pt-br/powershell/scripting/overview">Documentação</a></p>
+<h3 id="instalacao">Instalação</h3>
+<blockquote>
+<p>O Windows 10 já vem com o Powershell 5.1 instalado</p>
+</blockquote>
+<p><a href="https://github.com/PowerShell/PowerShell/releases/latest">Download</a></p>
+<p><a href="https://docs.microsoft.com/pt-br/powershell/scripting/install/installing-powershell">Instruções de instalação</a></p>
+<h3 id="habilitar-execucao-de-scripts">Habilitar execução de scripts</h3>
+<p>Por padrão, a execução de scripts vem desativada no Windows (<code>Restricted</code>) e requer confirmação (<code>Unrestricted</code>) em outros sistemas. Para ignorar essa verificação (somente Windows), utilize a opção <code>Bypass</code>.</p>
+<p>Abra o Powershell como administrador e execute o comando</p>
+<pre><code class="language-powershell">Set-ExecutionPolicy -ExecutionPolicy &lt;OPTION&gt;
+</code></pre>
+<h2 id="generate-pages">Generate pages</h2>
+<p>Ao executar o script (<code>.\generate-pages</code>), ele lerá os dados no arquivo <code>museu.xml</code> e irá gerar as páginas e salvar na pasta <code>html-out</code>. A pasta <code>html-static</code> e o arquivo <code>museu.xml</code> precisam estar no mesmo diretório que o arquivo de script.</p>
+<p>Para acessar a página, pode utilizar o comando <code>.\http-server</code> para iniciar um servidor HTTP e acessar os arquivos. A página inicial será aberta no navegador padrão. Se necessário, pode especificar a porta com o parâmetro <code>-Port &lt;PORTA&gt;</code>.</p>
+<h2 id="entrega">Entrega</h2>
+<ol>
+<li>Tranformação do dump da base de dados em um formato compatível com <code>Museu.xsd</code>
+<ul>
+<li><code>Museu.xsl</code></li>
+<li><code>Museu.xml</code></li>
+</ul>
+</li>
+<li>Geração das páginas web (arquivo ZIP)
+<ul>
+<li><code>generate-pages.ps1</code> (script para geração das páginas)</li>
+<li><code>http-server.ps1</code> (servidor HTTP)</li>
+<li><code>html-static</code> (conteúdo estático)
+<ul>
+<li><code>index.html</code> (página inicial/redirecionamento)</li>
+<li><code>page.xsl</code> (layout padrão)</li>
+<li><code>page.xsd</code> (esquema padrão)</li>
+<li><code>home.xml</code> (menu e informações do museu)</li>
+<li><code>styles.css</code> (folha de estilos)</li>
+<li>Imagens do museu
+<ul>
+<li><code>img1.jpg</code></li>
+<li><code>img2.jpg</code></li>
+<li><code>img3.jpg</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Questões de XSL/XQuery
+<ul>
+<li><code>questoes.xsl</code></li>
+<li><code>questoes.xml</code></li>
+</ul>
+</li>
+</ol>
+

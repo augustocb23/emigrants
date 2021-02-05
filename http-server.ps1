@@ -39,7 +39,6 @@ function Invoke-Response ([System.Net.HttpListenerContext]$Context, [string] $Fi
     $Context.Response.OutputStream.Close()    
 }
 
-[console]::TreatControlCAsInput = $true
 while ($http.IsListening) {
     $context = $http.GetContext()
     if ($context.Request.HttpMethod -Ne 'GET') { continue }
@@ -50,12 +49,5 @@ while ($http.IsListening) {
     }
     if ($context.Request.RawUrl -Ne '/') {
         Invoke-Response $context $context.Request.RawUrl
-    }
-
-    $key = [system.console]::readkey($true) 
-    if (($key.modifiers -band [consolemodifiers]"control") -and ($key.key -eq "C")) {
-        Write-Host 'Stopping...'
-        $http.Stop()
-        break
     }
 }
