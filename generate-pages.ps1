@@ -258,4 +258,4 @@ Copy-StaticFiles
 Build-PlacesListPage
 Build-EmigrantsListPage
 
-#Start-Process "$htmlOut/index.html"
+Start-Process "$htmlOut/index.html"
