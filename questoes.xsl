@@ -19,7 +19,12 @@
 				</xsl:for-each>
 			</q2>
 			<q3>
-				<!--TODO-->
+				<xsl:for-each select="ProcessoAcomp[idAcomp = /Museu/Acompanhante[lower-case(parentesco/text())='esposa']/idAcomp]/numCM">
+					<xsl:variable name="processWithSpouse" select="text()"/>
+					<xsl:if test="/Museu/ProcessoAcomp[numCM=$processWithSpouse and idAcomp = /Museu/Acompanhante[lower-case(parentesco/text())='filha']/idAcomp]">
+						<processo-com-esposa-e-filha><xsl:value-of select="text()"/></processo-com-esposa-e-filha>
+					</xsl:if>
+				</xsl:for-each>
 			</q3>
 			<q4>
 				<xsl:for-each-group select="Localidade" group-by="distrito">

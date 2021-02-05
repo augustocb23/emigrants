@@ -8,6 +8,7 @@
 	<Folder FolderName="XSL Files" ExtStr="xsl;xslt">
 		<File FilePath="Museu.xsl" HomeFolder="Yes"/>
 		<File FilePath="html-static\page.xsl" HomeFolder="Yes"/>
+		<File FilePath="questoes.xsl" HomeFolder="Yes"/>
 	</Folder>
 	<Folder FolderName="XQuery Files" ExtStr="xq;xql;xquery;xqu"/>
 	<Folder FolderName="HTML Files" ExtStr="html;htm;xhtml;asp">
