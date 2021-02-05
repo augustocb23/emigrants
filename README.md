@@ -32,4 +32,28 @@ Set-ExecutionPolicy -ExecutionPolicy <OPTION>
 
 ## Generate pages
 
-Ao executar o script (duplo clique, no Windows), ele lerá os dados no arquivo `museu.xml` e irá gerar as páginas, salvar na pasta `html-out` e abrir a página inicial. A pasta `html-static` e o arquivo `museu.xml` precisam estar no mesmo diretório que o arquivo de script.
+Ao executar o script (`.\generate-pages`), ele lerá os dados no arquivo `museu.xml` e irá gerar as páginas e salvar na pasta `html-out`. A pasta `html-static` e o arquivo `museu.xml` precisam estar no mesmo diretório que o arquivo de script.
+
+Para acessar a página, pode utilizar o comando `.\http-server` para iniciar um servidor HTTP e acessar os arquivos. A página inicial será aberta no navegador padrão. Se necessário, pode especificar a porta com o parâmetro `-Port <PORTA>`.
+
+## Entrega
+
+1. Tranformação do dump da base de dados em um formato compatível com `Museu.xsd`
+   - `Museu.xsl`
+   - `Museu.xml`
+2. Geração das páginas web (arquivo ZIP)
+   - `generate-pages.ps1` (script para geração das páginas)
+   - `http-server.ps1` (servidor HTTP)
+   - `html-static` (conteúdo estático)
+       - `index.html` (página inicial/redirecionamento)
+       - `page.xsl` (layout padrão)
+       - `page.xsd` (esquema padrão)
+       - `home.xml` (menu e informações do museu)
+       - `styles.css` (folha de estilos)
+       - Imagens do museu
+         - `img1.jpg`
+         - `img2.jpg`
+         - `img3.jpg`
+3. Questões de XSL/XQuery
+   - `questoes.xsl`
+   - `questoes.xml`

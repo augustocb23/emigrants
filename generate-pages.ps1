@@ -306,6 +306,3 @@ function Build-ProcessPage ([string] $ProcessId, [string] $EmigrantId, [string] 
 Copy-StaticFiles
 Build-PlacesListPage
 Build-EmigrantsListPage
-
-# Opens the generated website in the default browser.
-Start-Process "$htmlOut/index.html"
